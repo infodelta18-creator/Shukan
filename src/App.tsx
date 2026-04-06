@@ -1,5 +1,6 @@
 import { useConvexAuth } from "convex/react";
 import LoginForm from "./components/LoginForm";
+import Dashboard from "./components/Dashboard";
 
 export default function App() {
   const { isAuthenticated, isLoading } = useConvexAuth();
@@ -16,9 +17,5 @@ export default function App() {
     return <LoginForm />;
   }
 
-  return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold">Dashboard</h1>
-    </div>
-  );
+  return <Dashboard />;
 }
