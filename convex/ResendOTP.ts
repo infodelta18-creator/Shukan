@@ -13,7 +13,7 @@ export const ResendOTP = Email({
   async sendVerificationRequest({ identifier: email, token }) {
     const resend = new Resend(process.env.AUTH_RESEND_KEY);
     const { error } = await resend.emails.send({
-      from: "Shukan <noreply@shukan.app>",
+      from: "Shukan <noreply@doku-reader.com>",
       to: [email],
       subject: `Your Shukan login code: ${token}`,
       text: `Your verification code is: ${token}\n\nThis code expires in 20 minutes.`,
