@@ -7,6 +7,7 @@ import {
   Copy,
   LayoutTemplate,
   Sparkles,
+  ScanBarcode,
 } from "lucide-react";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
@@ -64,6 +65,11 @@ export default function MealSlotSection({
       icon: LayoutTemplate,
       action: () => setShowTemplates(!showTemplates),
       keepOpen: true,
+    },
+    {
+      label: "Scan Barcode",
+      icon: ScanBarcode,
+      action: () => navigate("/foods/scan"),
     },
     {
       label: "AI Recognize",
