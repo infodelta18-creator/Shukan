@@ -1,6 +1,8 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { DailyTotals } from "@/hooks/useDailyLog";
 import type { Doc } from "../../../convex/_generated/dataModel";
+import MacroChart from "./MacroChart";
+import MacroBar from "./MacroBar";
 
 export default function DayHeader({
   date,
@@ -34,35 +36,43 @@ export default function DayHeader({
       </div>
 
       <div className="rounded-lg bg-muted p-3">
-        <div className="text-center">
-          <span className="text-2xl font-bold">{Math.round(totals.kcal)}</span>
-          {goals && (
-            <span className="text-muted-foreground">
-              {" "}
-              / {goals.dailyKcal} kcal
+        <div className="flex items-center gap-4">
+          <MacroChart totals={totals} />
+          <div className="flex-1 text-center">
+            <span className="text-2xl font-bold">
+              {Math.round(totals.kcal)}
             </span>
-          )}
-        </div>
-        <div className="mt-2 grid grid-cols-3 gap-2 text-center text-sm">
-          <div>
-            <span className="font-medium">
-              {Math.round(totals.protein * 10) / 10}g
-            </span>
-            <p className="text-muted-foreground">Protein</p>
-          </div>
-          <div>
-            <span className="font-medium">
-              {Math.round(totals.carbs * 10) / 10}g
-            </span>
-            <p className="text-muted-foreground">Carbs</p>
-          </div>
-          <div>
-            <span className="font-medium">
-              {Math.round(totals.fat * 10) / 10}g
-            </span>
-            <p className="text-muted-foreground">Fat</p>
+            {goals && (
+              <span className="text-muted-foreground">
+                {" "}
+                / {goals.dailyKcal} kcal
+              </span>
+            )}
           </div>
         </div>
+
+        {goals && (
+          <div className="mt-3 space-y-2">
+            <MacroBar
+              label="Protein"
+              current={totals.protein}
+              goal={goals.dailyProtein}
+              color="#3b82f6"
+            />
+            <MacroBar
+              label="Carbs"
+              current={totals.carbs}
+              goal={goals.dailyCarbs}
+              color="#f59e0b"
+            />
+            <MacroBar
+              label="Fat"
+              current={totals.fat}
+              goal={goals.dailyFat}
+              color="#ef4444"
+            />
+          </div>
+        )}
       </div>
     </div>
   );
