@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { ChevronDown, ChevronUp, Plus } from "lucide-react";
+import { ChevronDown, ChevronUp, Plus, Copy } from "lucide-react";
 import type { Doc } from "../../../convex/_generated/dataModel";
 import { MEAL_SLOT_LABELS } from "@/hooks/useDailyLog";
 import type { MealSlot } from "@/hooks/useDailyLog";
@@ -60,6 +60,13 @@ export default function MealSlotSection({
               className="text-sm text-muted-foreground"
             >
               Quick Add
+            </button>
+            <button
+              onClick={() => navigate(`/log/${date}/${slot}/copy`)}
+              className="flex items-center gap-1 text-sm text-muted-foreground"
+            >
+              <Copy className="h-3 w-3" />
+              Copy
             </button>
           </div>
         </div>

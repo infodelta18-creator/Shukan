@@ -7,6 +7,7 @@ import SettingsPage from "@/pages/SettingsPage";
 import FoodFormPage from "@/pages/FoodFormPage";
 import AddEntryPage from "@/pages/AddEntryPage";
 import QuickAddPage from "@/pages/QuickAddPage";
+import CopyMealPage from "@/pages/CopyMealPage";
 
 export const routes: RouteObject[] = [
   {
@@ -18,6 +19,7 @@ export const routes: RouteObject[] = [
       { path: "foods/:id/edit", element: <FoodFormPage /> },
       { path: "log/:date/:mealSlot", element: <AddEntryPage /> },
       { path: "log/:date/:mealSlot/quick", element: <QuickAddPage /> },
+      { path: "log/:date/:mealSlot/copy", element: <CopyMealPage /> },
       { path: "stats", element: <StatsPage /> },
       { path: "settings", element: <SettingsPage /> },
     ],
