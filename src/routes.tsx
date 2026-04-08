@@ -13,6 +13,7 @@ import TemplatesPage from "@/pages/TemplatesPage";
 import TemplateFormPage from "@/pages/TemplateFormPage";
 import BarcodeScanPage from "@/pages/BarcodeScanPage";
 import AIRecognitionPage from "@/pages/AIRecognitionPage";
+import EditEntryPage from "@/pages/EditEntryPage";
 
 export const routes: RouteObject[] = [
   {
@@ -32,6 +33,7 @@ export const routes: RouteObject[] = [
       { path: "templates/:id/edit", element: <TemplateFormPage /> },
       { path: "weekly", element: <WeeklyPage /> },
       { path: "stats", element: <StatsPage /> },
+      { path: "entry/:entryId/edit", element: <EditEntryPage /> },
       { path: "settings", element: <SettingsPage /> },
     ],
   },

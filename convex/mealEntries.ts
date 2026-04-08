@@ -3,6 +3,16 @@ import { query, mutation } from "./_generated/server";
 import { getUserOrThrow } from "./lib/auth";
 import { mealSlotValidator } from "./schema";
 
+export const getById = query({
+  args: { id: v.id("mealEntries") },
+  handler: async (ctx, args) => {
+    const { userId } = await getUserOrThrow(ctx);
+    const entry = await ctx.db.get(args.id);
+    if (!entry || entry.userId !== userId) return null;
+    return entry;
+  },
+});
+
 export const listByDate = query({
   args: { date: v.string() },
   handler: async (ctx, args) => {
