@@ -4,6 +4,7 @@ import TodayPage from "@/pages/TodayPage";
 import FoodsPage from "@/pages/FoodsPage";
 import StatsPage from "@/pages/StatsPage";
 import SettingsPage from "@/pages/SettingsPage";
+import FoodFormPage from "@/pages/FoodFormPage";
 
 export const routes: RouteObject[] = [
   {
@@ -11,6 +12,8 @@ export const routes: RouteObject[] = [
     children: [
       { index: true, element: <TodayPage /> },
       { path: "foods", element: <FoodsPage /> },
+      { path: "foods/new", element: <FoodFormPage /> },
+      { path: "foods/:id/edit", element: <FoodFormPage /> },
       { path: "stats", element: <StatsPage /> },
       { path: "settings", element: <SettingsPage /> },
     ],
