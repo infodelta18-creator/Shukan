@@ -8,15 +8,18 @@ export default function DayHeader({
   date,
   onPrev,
   onNext,
+  onToday,
   totals,
   goals,
 }: {
   date: string;
   onPrev: () => void;
   onNext: () => void;
+  onToday: () => void;
   totals: DailyTotals;
   goals: Doc<"userGoals"> | null | undefined;
 }) {
+  const isToday = date === new Date().toISOString().slice(0, 10);
   const formatted = new Date(date + "T12:00:00").toLocaleDateString("en-US", {
     weekday: "short",
     month: "short",
@@ -29,7 +32,12 @@ export default function DayHeader({
         <button onClick={onPrev} className="p-1">
           <ChevronLeft className="h-5 w-5" />
         </button>
-        <h2 className="font-semibold">{formatted}</h2>
+        <button
+          onClick={onToday}
+          className={`font-semibold ${!isToday ? "underline underline-offset-4 decoration-primary" : ""}`}
+        >
+          {isToday ? "Today" : formatted}
+        </button>
         <button onClick={onNext} className="p-1">
           <ChevronRight className="h-5 w-5" />
         </button>

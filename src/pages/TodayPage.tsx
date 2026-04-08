@@ -30,6 +30,7 @@ export default function TodayPage() {
         date={date}
         onPrev={() => setDate((d) => shiftDate(d, -1))}
         onNext={() => setDate((d) => shiftDate(d, 1))}
+        onToday={() => setDate(toDateString(new Date()))}
         totals={totals}
         goals={goals}
       />
