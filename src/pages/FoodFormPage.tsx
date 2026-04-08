@@ -11,6 +11,7 @@ export default function FoodFormPage() {
   const { id } = useParams<{ id: string }>();
   const [searchParams] = useSearchParams();
   const barcodeFromScan = searchParams.get("barcode");
+  const nameFromSearch = searchParams.get("name");
   const isEditing = !!id;
 
   const food = useQuery(
@@ -74,7 +75,9 @@ export default function FoodFormPage() {
               }
             : barcodeFromScan
               ? { barcode: barcodeFromScan }
-              : undefined
+              : nameFromSearch
+                ? { name: nameFromSearch }
+                : undefined
         }
         onSubmit={handleSubmit}
         submitLabel={isEditing ? "Save Changes" : "Create Food"}

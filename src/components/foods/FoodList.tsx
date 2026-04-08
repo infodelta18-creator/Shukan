@@ -7,10 +7,12 @@ export default function FoodList({
   filter,
   searchQuery,
   onSelect,
+  onCreateNew,
 }: {
   filter?: "favorites" | "recent";
   searchQuery?: string;
   onSelect?: (food: Doc<"foods">) => void;
+  onCreateNew?: (name: string) => void;
 }) {
   const listResult = useQuery(
     api.foods.list,
@@ -31,8 +33,16 @@ export default function FoodList({
 
   if (foods.length === 0) {
     return (
-      <div className="p-8 text-center text-muted-foreground">
-        No foods found
+      <div className="p-8 text-center text-muted-foreground space-y-3">
+        <p>No foods found</p>
+        {searchQuery && onCreateNew && (
+          <button
+            onClick={() => onCreateNew(searchQuery)}
+            className="text-primary text-sm font-medium"
+          >
+            + Create "{searchQuery}"
+          </button>
+        )}
       </div>
     );
   }

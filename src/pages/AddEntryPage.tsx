@@ -67,6 +67,9 @@ export default function AddEntryPage() {
           searchQuery={search || undefined}
           filter={search ? undefined : "recent"}
           onSelect={setSelectedFood}
+          onCreateNew={(name) =>
+            navigate(`/foods/new?name=${encodeURIComponent(name)}`)
+          }
         />
       </div>
     </div>
