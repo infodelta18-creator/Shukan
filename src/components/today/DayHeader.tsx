@@ -54,11 +54,13 @@ export default function DayHeader({
             <span className="text-2xl font-bold">
               {Math.round(totals.kcal)}
             </span>
-            {goals && (
+            {goals ? (
               <span className="text-muted-foreground">
                 {" "}
                 / {goals.dailyKcal} kcal
               </span>
+            ) : (
+              <span className="text-muted-foreground"> kcal</span>
             )}
           </div>
         </div>
