@@ -6,13 +6,20 @@ import { Scale } from "lucide-react";
 
 export default function WeightInput({ date }: { date: string }) {
   const entry = useQuery(api.weightEntries.getByDate, { date });
+  const latest = useQuery(api.weightEntries.getLatest);
   const upsert = useMutation(api.weightEntries.upsert);
   const [value, setValue] = useState("");
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    setValue(entry?.weight?.toString() ?? "");
-  }, [entry]);
+    if (entry) {
+      setValue(entry.weight.toString());
+    } else if (latest) {
+      setValue(latest.weight.toString());
+    } else {
+      setValue("");
+    }
+  }, [entry, latest]);
 
   const handleBlur = async () => {
     const num = parseFloat(value);

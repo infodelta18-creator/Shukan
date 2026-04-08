@@ -2,6 +2,18 @@ import { v } from "convex/values";
 import { query, mutation } from "./_generated/server";
 import { getUserOrThrow } from "./lib/auth";
 
+export const getLatest = query({
+  args: {},
+  handler: async (ctx) => {
+    const { userId } = await getUserOrThrow(ctx);
+    return await ctx.db
+      .query("weightEntries")
+      .withIndex("by_userId_and_date", (q) => q.eq("userId", userId))
+      .order("desc")
+      .first();
+  },
+});
+
 export const getByDate = query({
   args: { date: v.string() },
   handler: async (ctx, args) => {
