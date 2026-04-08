@@ -3,6 +3,7 @@ import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import CalorieAverageCard from "@/components/stats/CalorieAverageCard";
 import ProteinTrendCard from "@/components/stats/ProteinTrendCard";
+import ComplianceHeatmap from "@/components/stats/ComplianceHeatmap";
 
 const ranges = [
   { label: "7d", days: 7 },
@@ -33,6 +34,12 @@ export default function StatsPage() {
     endDate: dates[dates.length - 1],
   });
   const goals = useQuery(api.userGoals.get);
+
+  const heatmapDates = getDatesForRange(90);
+  const heatmapData = useQuery(api.stats.getDailyTotals, {
+    startDate: heatmapDates[0],
+    endDate: heatmapDates[heatmapDates.length - 1],
+  });
 
   return (
     <div className="p-4 space-y-4">
@@ -66,6 +73,14 @@ export default function StatsPage() {
             goalProtein={goals?.dailyProtein}
           />
         </>
+      )}
+
+      {heatmapData && goals && (
+        <ComplianceHeatmap
+          data={heatmapData}
+          goalKcal={goals.dailyKcal}
+          months={3}
+        />
       )}
     </div>
   );
