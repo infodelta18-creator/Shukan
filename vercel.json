@@ -3,3 +3,6 @@
     { "source": "/((?!assets|icons|sw\\.js|workbox-.*|manifest\\.webmanifest).*)", "destination": "/index.html" }
   ]
 }
+{
+  "outputDirectory": "dist"
+}
